@@ -1,4 +1,4 @@
-package com.ufcg.psoft.mercadofacil.produto;
+package com.ufcg.psoft.mercadofacil.model;
 
 import lombok.Builder;
 import lombok.Data;

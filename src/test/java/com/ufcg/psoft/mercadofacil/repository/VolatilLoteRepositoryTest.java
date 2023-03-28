@@ -1,4 +1,4 @@
-package com.ufcg.psoft.mercadofacil;
+package com.ufcg.psoft.mercadofacil.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ufcg.psoft.mercadofacil.lote.Lote;
-import com.ufcg.psoft.mercadofacil.lote.VolatilLoteRepository;
-import com.ufcg.psoft.mercadofacil.produto.Produto;
+import com.ufcg.psoft.mercadofacil.model.Lote;
+import com.ufcg.psoft.mercadofacil.model.Produto;
 
 @SpringBootTest
+@DisplayName("Testes do repositorio de lotes")
 class VolatilLoteRepositoryTest {
 
    @Autowired
