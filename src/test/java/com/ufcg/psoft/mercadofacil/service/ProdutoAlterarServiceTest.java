@@ -31,7 +31,7 @@ public class ProdutoAlterarServiceTest {
                         .id(10L)
                         .nome("Produto mockado")
                         .preco(45.3)
-                        .codigoBarra("1234567890")
+                        .codigoBarra("4012345678901")
                         .fabricante("Fabricante 2")
                         .build());
 
