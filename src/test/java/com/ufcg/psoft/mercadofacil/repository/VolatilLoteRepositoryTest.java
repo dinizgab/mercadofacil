@@ -1,4 +1,4 @@
-package com.ufcg.psoft.mercadofacil;
+package com.ufcg.psoft.mercadofacil.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.ufcg.psoft.mercadofacil.lote.Lote;
-import com.ufcg.psoft.mercadofacil.lote.VolatilLoteRepository;
-import com.ufcg.psoft.mercadofacil.produto.Produto;
+import com.ufcg.psoft.mercadofacil.model.Lote;
+import com.ufcg.psoft.mercadofacil.model.Produto;
 
 @SpringBootTest
+@DisplayName("Testes do repositorio de lotes")
 class VolatilLoteRepositoryTest {
 
    @Autowired
-   VolatilLoteRepository driver;
+   LoteRepository driver;
 
    Lote lote;
    Lote resultado;
@@ -81,41 +81,11 @@ class VolatilLoteRepositoryTest {
 
    @Test
    void findOneLoteTest() {
-       driver.save(lote);
-       Lote resultado = driver.find(1L);
+       Lote resultado = driver.findById(1L).get();
 
        assertEquals(resultado.getId(), 1L);
        assertEquals(resultado.getProduto(), produto);
        assertEquals(resultado.getNumeroDeItens(), 100);
-   }
-
-   @Test
-   void updateOneTest() {
-       Produto produtoExtra = Produto.builder()
-               .id(2L)
-               .nome("Produto Extra")
-               .codigoBarra("987654321")
-               .fabricante("Fabricante Extra")
-               .preco(125.36)
-               .build();
-       Lote loteExtra = Lote.builder()
-               .id(1L)
-               .numeroDeItens(100)
-               .produto(produtoExtra)
-               .build();
-
-       Lote loteUpdate = Lote.builder()
-               .id(1L)
-               .numeroDeItens(250)
-               .produto(produtoExtra)
-               .build();
-       driver.save(lote);
-
-       resultado = driver.save(loteExtra);
-
-       Lote resultado = driver.update(loteUpdate);
-
-       assertEquals(resultado.getNumeroDeItens(), 250);
    }
 
    @Test
