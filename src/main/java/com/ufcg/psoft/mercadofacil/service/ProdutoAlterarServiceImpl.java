@@ -1,14 +1,14 @@
 package com.ufcg.psoft.mercadofacil.service;
 
 import com.ufcg.psoft.mercadofacil.model.Produto;
-import com.ufcg.psoft.mercadofacil.repository.VolatilProdutoRepository;
+import com.ufcg.psoft.mercadofacil.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProdutoAlterarServiceImpl implements ProdutoAlterarService {
     @Autowired
-    VolatilProdutoRepository produtoRepository;
+    ProdutoRepository produtoRepository;
     @Autowired
     ValidarCodigoBarraService validador;
 
@@ -18,6 +18,6 @@ public class ProdutoAlterarServiceImpl implements ProdutoAlterarService {
 
         validador.validarCodigoBarra(produtoAlterado.getCodigoBarra());
 
-        return this.produtoRepository.update(produtoAlterado);
+        return this.produtoRepository.save(produtoAlterado);
     }
 }
