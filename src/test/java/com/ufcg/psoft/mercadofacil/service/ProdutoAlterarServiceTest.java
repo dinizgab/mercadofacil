@@ -1,15 +1,13 @@
 package com.ufcg.psoft.mercadofacil.service;
 
 import com.ufcg.psoft.mercadofacil.model.Produto;
-import com.ufcg.psoft.mercadofacil.repository.VolatilProdutoRepository;
+import com.ufcg.psoft.mercadofacil.repository.ProdutoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,32 +18,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ProdutoAlterarServiceTest {
     @Autowired
     private ProdutoAlterarService driver;
-    @MockBean
-    private VolatilProdutoRepository produtoRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
     private Produto produto;
 
     @BeforeEach
     void setup() {
-        Mockito.when(produtoRepository.find(10L))
-                .thenReturn(Produto.builder()
-                        .id(10L)
-                        .nome("Produto mockado")
-                        .preco(45.3)
-                        .codigoBarra("4012345678901")
-                        .fabricante("Fabricante 2")
-                        .build());
-
-        produto = produtoRepository.find(10L);
-
-        Mockito.when(produtoRepository.update(produto))
-                .thenReturn(Produto.builder()
-                        .id(10L)
-                        .nome("Produto alterado")
-                        .preco(20.6)
-                        .codigoBarra("4012345678901")
-                        .fabricante("Fabricante alterado")
-                        .build()
-                );
+        produto = produtoRepository.save(Produto.builder()
+                .codigoBarra("7899137500104")
+                .nome("Produto Dez")
+                .fabricante("Empresa Dez")
+                .preco(450.00)
+                .build()
+        );
     }
 
     @Test
